@@ -39,14 +39,14 @@ Documentación técnica completa:
 
 ---
 
-## 🗺️ Próximas Versiones y Hoja de Ruta
+## 🗺️ Próximas Versiones y Hoja de Ruta (Ecosistema Samsung Galaxy)
 
-La evolución del proyecto está planificada y documentada en detalle en [**`docs/ROADMAP.md`**](docs/ROADMAP.md):
+La evolución técnica del proyecto está planificada y documentada con especificaciones completas en [**`docs/ROADMAP.md`**](docs/ROADMAP.md), orientada **exclusivamente a dispositivos Samsung Galaxy** (desde Galaxy S9 / Note 9 hasta la serie S25 Ultra y plegables):
 
-* **`v1.2.0` — Motor de Diagnóstico & Escáner Automático de Sensores:** Escaneo autónomo y no bloqueante de todos los Camera IDs para detectar sensores sanos vs averiados con métricas de salud (focal, resolución, estado HAL).
-* **`v1.3.0` — Selector Múltiple Dinámico & UI Builder:** Lista con casillas de selección múltiple (checkboxes) para que el usuario elija los sensores funcionales en su dispositivo (ej. S22 Ultra, S23+, etc.), generando la interfaz y accesos directos (*App Shortcuts*) en el launcher de forma 100% dinámica.
-* **`v1.4.0` — Mapeador Heurístico Samsung & Auto-Configuración Pro:** Compatibilidad ampliada para familias Galaxy S20–S24, Note y Fold/Flip con asistente para blindar la cámara nativa en modo Pro.
-* **`v2.0.0` — Universal Camera Rescue (Multi-OEM):** Rescate para otros fabricantes (Pixel, Xiaomi, OnePlus) y visor completo nativo dentro de la app con zoom digital por software y grabación de video MP4.
+* **`v1.2.0` — Motor de Diagnóstico & Escáner de Sensores:** Escaneo autónomo y no bloqueante en el propio dispositivo (*Canary Testing*) para detectar qué lentes responden y cuáles tienen averías físicas. Incluye pre-requisitos guiados (permiso básico de cámara, y auditoría profunda opcional vía ADB / Shizuku o base de datos de modelos).
+* **`v1.3.0` — Selector Múltiple Dinámico & UI Builder:** Lista interactiva con casillas de verificación (*Multi-Select Checkboxes*) para que el usuario elija los sensores funcionales descubiertos en su modelo (ej. S22 Ultra, S23+, etc.), autogenerando la interfaz y accesos directos (*App Shortcuts* y *Quick Settings Tile*) sin código rígido.
+* **`v1.4.0` — Mapeador Heurístico Samsung & Asistente One UI:** Diccionario pre-compilado de compatibilidad para familias Galaxy S20–S25, Note, Z Fold/Flip y Galaxy A, con asistente para fijar "Ajustes para conservar (Modo Pro)" y configuración de la tecla lateral de encendido (*Side Key Quick Launch*).
+* **`v2.0.0` — Samsung Camera Rescue Universal:** Cobertura integral desde Galaxy S9/Note 9 (Android 10) hasta S25 Ultra (Android 16+), visor `Camera2` de pantalla completa con zoom digital por software sobre el sensor sano, soporte para apertura mecánica dual ($f/1.5 \leftrightarrow f/2.4$) y grabación de video MP4 directo.
 
 ---
 
