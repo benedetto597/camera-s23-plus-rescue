@@ -1,0 +1,94 @@
+name: Release APK (On Version Tag Only)
+
+# COSTO $0: Este workflow UNICAMENTE se ejecuta cuando se publica un tag de version (ej. v1.0.0).
+# Los commits diarios a main o ramas de desarrollo NO consumen minutos de GitHub Actions.
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-release:
+    name: Build & Publish S23+ Camera APK
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+
+      - name: Set up Android SDK (Build-Tools 34 & Platform 34)
+        uses: android-actions/setup-android@v3
+
+      - name: Run Unit Tests (CameraConfigTest)
+        run: |
+          mkdir -p build/test-classes
+          javac -encoding UTF-8 -d build/test-classes \
+            app/src/main/java/com/s23plus/camera/CameraConfig.java \
+            app/src/test/java/com/s23plus/camera/CameraConfigTest.java
+          java -cp build/test-classes com.s23plus.camera.CameraConfigTest
+
+      - name: Build and Sign Release APK
+        run: |
+          sdkmanager "platforms;android-34" "build-tools;34.0.0"
+          BUILD_TOOLS="$ANDROID_HOME/build-tools/34.0.0"
+          ANDROID_JAR="$ANDROID_HOME/platforms/android-34/android.jar"
+
+          mkdir -p build/apk-ci/compiled_res build/apk-ci/gen build/apk-ci/classes build/apk-ci/dex dist
+
+          "$BUILD_TOOLS/aapt2" compile --dir app/src/main/res -o build/apk-ci/compiled_res/res.zip
+          "$BUILD_TOOLS/aapt2" link \
+            -I "$ANDROID_JAR" \
+            --manifest app/src/main/AndroidManifest.xml \
+            --min-sdk-version 30 \
+            --target-sdk-version 34 \
+            --version-code 1 \
+            --version-name "1.0.0" \
+            -o build/apk-ci/unaligned.apk \
+            --java build/apk-ci/gen \
+            build/apk-ci/compiled_res/res.zip
+
+          find app/src/main/java build/apk-ci/gen -name "*.java" > build/apk-ci/sources.txt
+          javac -encoding UTF-8 -source 17 -target 17 -classpath "$ANDROID_JAR" -d build/apk-ci/classes @build/apk-ci/sources.txt
+
+          find build/apk-ci/classes -name "*.class" > build/apk-ci/classes.txt
+          "$BUILD_TOOLS/d8" --min-api 30 --lib "$ANDROID_JAR" --output build/apk-ci/dex $(cat build/apk-ci/classes.txt)
+
+          cp build/apk-ci/unaligned.apk build/apk-ci/unsigned.apk
+          (cd build/apk-ci/dex && zip -u ../unsigned.apk classes.dex)
+          "$BUILD_TOOLS/zipalign" -f -p 4 build/apk-ci/unsigned.apk build/apk-ci/aligned.apk
+
+          keytool -genkeypair -v \
+            -keystore build/apk-ci/release.keystore \
+            -storepass android -alias s23camera -keypass android \
+            -keyalg RSA -keysize 2048 -validity 10000 \
+            -dname "CN=S23PlusCamera,O=S23Rescue,C=US"
+
+          VERSION_TAG="${GITHUB_REF_NAME}"
+          FINAL_APK="dist/s23-plus-camera-${VERSION_TAG}.apk"
+
+          "$BUILD_TOOLS/apksigner" sign \
+            --ks build/apk-ci/release.keystore \
+            --ks-pass pass:android \
+            --key-pass pass:android \
+            --out "$FINAL_APK" \
+            build/apk-ci/aligned.apk
+
+          sha256sum "$FINAL_APK" > "${FINAL_APK}.sha256"
+
+      - name: Upload APK to GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            dist/*.apk
+            dist/*.sha256
+          generate_release_notes: true

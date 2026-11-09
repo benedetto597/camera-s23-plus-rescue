@@ -1,0 +1,14 @@
+# Archivos de compilación Android / Gradle
+.gradle/
+build/
+app/build/
+local.properties
+*.iml
+.idea/
+.DS_Store
+Thumbs.db
+
+# Claves privadas de firma (nunca subir al repositorio)
+*.jks
+*.keystore
+!debug.keystore
