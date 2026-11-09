@@ -16,6 +16,7 @@ Sin embargo, el análisis de ingeniería inversa sobre `ShootingModeMap` y `Shoo
 Documentación técnica completa:
 - [Diagnóstico de Hardware y Subsistema HAL (`docs/hardware-diagnosis.md`)](docs/hardware-diagnosis.md)
 - [Arquitectura de Software y Seguridad (`docs/architecture.md`)](docs/architecture.md)
+- [Hoja de Ruta y Futuras Versiones (`docs/ROADMAP.md`)](docs/ROADMAP.md)
 - [Especificación de Diseño (`docs/superpowers/specs/2026-11-08-s23-plus-camera-design.md`)](docs/superpowers/specs/2026-11-08-s23-plus-camera-design.md)
 - [Plan de Implementación (`docs/superpowers/plans/2026-11-08-s23-plus-camera-plan.md`)](docs/superpowers/plans/2026-11-08-s23-plus-camera-plan.md)
 
@@ -35,6 +36,17 @@ Documentación técnica completa:
    - Incluye también acceso directo a **Video Trasero Pro (`device 56` / `52`)**.
 4. **Lanzador Trasero 1x vía Escáner QR + HUD Obturador Flotante (`device 56`):**
    - Abre el visor `SCAN_QR_CODE` (`device 56`) y superpone una barra flotante minimalista (`RearCaptureService`) con botón **Capturar**, selector de recorte (**Visor** vs **Completo**) y botón para volver a la cámara frontal.
+
+---
+
+## 🗺️ Próximas Versiones y Hoja de Ruta
+
+La evolución del proyecto está planificada y documentada en detalle en [**`docs/ROADMAP.md`**](docs/ROADMAP.md):
+
+* **`v1.2.0` — Motor de Diagnóstico & Escáner Automático de Sensores:** Escaneo autónomo y no bloqueante de todos los Camera IDs para detectar sensores sanos vs averiados con métricas de salud (focal, resolución, estado HAL).
+* **`v1.3.0` — Selector Múltiple Dinámico & UI Builder:** Lista con casillas de selección múltiple (checkboxes) para que el usuario elija los sensores funcionales en su dispositivo (ej. S22 Ultra, S23+, etc.), generando la interfaz y accesos directos (*App Shortcuts*) en el launcher de forma 100% dinámica.
+* **`v1.4.0` — Mapeador Heurístico Samsung & Auto-Configuración Pro:** Compatibilidad ampliada para familias Galaxy S20–S24, Note y Fold/Flip con asistente para blindar la cámara nativa en modo Pro.
+* **`v2.0.0` — Universal Camera Rescue (Multi-OEM):** Rescate para otros fabricantes (Pixel, Xiaomi, OnePlus) y visor completo nativo dentro de la app con zoom digital por software y grabación de video MP4.
 
 ---
 

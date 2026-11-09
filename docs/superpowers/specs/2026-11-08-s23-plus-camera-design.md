@@ -40,7 +40,11 @@ El diagnóstico en dispositivo demostró que:
   - Tarjetas de rescate trasero con nombres cortos y claros (**`📷 Cámara Trasera Pro`**, **`🎯 Trasera Rápida (Visor QR)`**, **`🎥 Video Trasero Pro`**), acompañadas de un botón **`▾`** que despliega/oculta bajo demanda la explicación técnica del bypass HAL (`ID 56` / `ID 52` vs `ID 58`).
 
 ### Versiones Futuras Planificadas (v1.2+)
-- Controles avanzados de exposición manual en cámara frontal, temporizador de disparo, cuadrícula de composición y accesos directos en Quick Settings Tile.
+Consultar la hoja de ruta completa en [**`docs/ROADMAP.md`**](../../ROADMAP.md):
+- **v1.2.0:** Escaneo y diagnóstico no bloqueante de todos los sensores HAL del dispositivo.
+- **v1.3.0:** Selector múltiple de lentes descubiertos y generación dinámica de botones y App Shortcuts (ej. soporte adaptativo para S22 Ultra, etc.).
+- **v1.4.0:** Motor heurístico de compatibilidad multi-dispositivo Samsung Galaxy y asistente guiado para fijar modo Pro.
+- **v2.0.0:** Universal Camera Rescue (multi-OEM: Pixel, Xiaomi, OnePlus) con visor propio a pantalla completa, zoom digital suave y grabación de video MP4.
 
 ---
 
