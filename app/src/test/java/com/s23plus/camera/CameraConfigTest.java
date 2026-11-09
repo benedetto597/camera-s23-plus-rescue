@@ -8,11 +8,26 @@ public final class CameraConfigTest {
 
     public static void main(String[] args) {
         testCameraIdsAndConstants();
+        testAppBrandingAndShortLabels();
         testToggleFrontCameraId();
         testCleanCropBoundsOnS23PlusResolution();
         testFullFrameCropBounds();
         testInvalidDimensionsThrowException();
-        System.out.println("PASS: Todas las pruebas unitarias de CameraConfigTest finalizaron con exito (5/5).");
+        System.out.println("PASS: Todas las pruebas unitarias de CameraConfigTest finalizaron con exito (6/6).");
+    }
+
+    private static void testAppBrandingAndShortLabels() {
+        assertEquals("S23+ Camera Rescue", CameraConfig.APP_TITLE, "APP_TITLE debe incluir Rescue");
+        assertEquals("1.0.1", CameraConfig.APP_VERSION, "APP_VERSION debe ser 1.0.1");
+        assertTrue(CameraConfig.BTN_REAR_PRO_SHORT.length() <= 24, "Nombre corto de boton Pro debe ser conciso");
+        assertTrue(CameraConfig.BTN_REAR_QR_SHORT.length() <= 26, "Nombre corto de boton QR debe ser conciso");
+        assertTrue(CameraConfig.BTN_REAR_VIDEO_SHORT.length() <= 24, "Nombre corto de boton Video debe ser conciso");
+        assertTrue(CameraConfig.TECH_DESC_REAR_PRO.contains("ID 56") && CameraConfig.TECH_DESC_REAR_PRO.contains("ID 52"),
+                "Descripcion tecnica Pro debe documentar sensores ID 56 e ID 52");
+        assertTrue(CameraConfig.TECH_DESC_REAR_QR.contains("SCAN_QR_CODE"),
+                "Descripcion tecnica QR debe documentar SCAN_QR_CODE");
+        assertTrue(CameraConfig.TECH_DESC_FRONT.contains("S5K3LU"),
+                "Descripcion tecnica Frontal debe documentar sensor S5K3LU");
     }
 
     private static void testCameraIdsAndConstants() {

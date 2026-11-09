@@ -88,4 +88,26 @@
 
 - [x] **Step 1: Crear `.github/workflows/release-apk.yml` restringido estrictamente a `on: push: tags: ['v*']`**
 - [x] **Step 2: Redactar `README.md`, `SECURITY.md` y `docs/architecture.md`**
-- [x] **Step 3: Inicializar repositorio Git local, crear repositorio remoto en GitHub y subir la rama `main`**
+### Task 7: Lanzamiento v1.0.1 — Icono Adaptativo, Rediseño de Interfaz Moderna con Desplegables Técnicos (`▾`) y Renombrado a `camera-s23-plus-rescue`
+
+**Files:**
+- Create: `app/src/main/res/drawable/ic_launcher_background.xml`
+- Create: `app/src/main/res/drawable/ic_launcher_foreground.xml`
+- Create: `app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml`
+- Create: `app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml`
+- Modify: `app/src/main/AndroidManifest.xml`
+- Modify: `app/build.gradle.kts`
+- Modify: `settings.gradle.kts`
+- Modify: `app/src/main/java/com/s23plus/camera/CameraConfig.java`
+- Modify: `app/src/test/java/com/s23plus/camera/CameraConfigTest.java`
+- Modify: `app/src/main/java/com/s23plus/camera/MainActivity.java`
+- Modify: `app/src/main/java/com/s23plus/camera/RearCaptureService.java`
+- Modify: `scripts/build-local.ps1`
+- Modify: `README.md`
+
+- [x] **Step 1: Crear el icono adaptativo vectorial (`ic_launcher_background.xml`, `ic_launcher_foreground.xml`, `ic_launcher.xml`, `ic_launcher_round.xml`) y configurar `AndroidManifest.xml` con `S23+ Camera Rescue` y versión `1.0.1` (`versionCode = 2`)**
+- [x] **Step 2: Rediseñar `MainActivity.java` y `RearCaptureService.java` con estética moderna oscura, botones de nombres cortos y tarjetas con botón de flecha (`▾` / `▴`) para desplegar descripciones técnicas**
+- [x] **Step 3: Actualizar y ejecutar pruebas unitarias (`CameraConfigTest`) y compilar `dist/s23-plus-camera-rescue-v1.0.1.apk`**
+- [x] **Step 4: Actualizar la app en el S23+ conectado vía ADB y verificar visual y funcionalmente la nueva interfaz v1.0.1 y los desplegables técnicos**
+- [x] **Step 5: Renombrar el repositorio de GitHub a `camera-s23-plus-rescue`, hacer push de `main` y publicar el tag `v1.0.1`**
+

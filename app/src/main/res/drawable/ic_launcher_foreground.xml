@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Cuerpo de la cámara moderno -->
+    <path
+        android:fillColor="#1E293B"
+        android:strokeColor="#38BDF8"
+        android:strokeWidth="2.2"
+        android:pathData="M30,36 L38,36 L42,30 L66,30 L70,36 L78,36 C81.3,36 84,38.7 84,42 L84,72 C84,75.3 81.3,78 78,78 L30,78 C26.7,78 24,75.3 24,72 L24,42 C24,38.7 26.7,36 30,36 Z" />
+
+    <!-- Anillo exterior del lente principal 1x (ID 56) -->
+    <path
+        android:fillColor="#0F172A"
+        android:strokeColor="#38BDF8"
+        android:strokeWidth="2.8"
+        android:pathData="M54,41 A16,16 0 1,1 53.9,41 Z" />
+
+    <!-- Cristal óptico cian/esmeralda -->
+    <path
+        android:fillColor="#0284C7"
+        android:pathData="M54,46 A11,11 0 1,1 53.9,46 Z" />
+
+    <!-- Pupila central del sensor S5KGN3 -->
+    <path
+        android:fillColor="#0B1120"
+        android:pathData="M54,51 A6,6 0 1,1 53.9,51 Z" />
+
+    <!-- Reflejo especular del lente -->
+    <path
+        android:fillColor="#7DD3FC"
+        android:pathData="M49,49 A2.6,2.6 0 1,1 48.9,49 Z" />
+
+    <!-- Indicador LED verde de estado activo -->
+    <path
+        android:fillColor="#10B981"
+        android:pathData="M75,43 A2.5,2.5 0 1,1 74.9,43 Z" />
+
+    <!-- Insignia circular de Rescate ("Rescue" Cross) en esquina inferior derecha -->
+    <path
+        android:fillColor="#10B981"
+        android:strokeColor="#0B0F19"
+        android:strokeWidth="1.8"
+        android:pathData="M75,63 A10,10 0 1,1 74.9,63 Z" />
+
+    <!-- Cruz blanca de rescate dentro de la insignia -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M73.5,67.5 L76.5,67.5 L76.5,71.5 L80.5,71.5 L80.5,74.5 L76.5,74.5 L76.5,78.5 L73.5,78.5 L73.5,74.5 L69.5,74.5 L69.5,71.5 L73.5,71.5 Z" />
+</vector>

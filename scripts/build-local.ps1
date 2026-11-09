@@ -36,8 +36,8 @@ Write-Host "[2/6] Compilando recursos Android con aapt2..."
     --manifest (Join-Path $ProjectRoot "app\src\main\AndroidManifest.xml") `
     --min-sdk-version 30 `
     --target-sdk-version 34 `
-    --version-code 1 `
-    --version-name "1.0.0" `
+    --version-code 2 `
+    --version-name "1.0.1" `
     -o "$BuildDir\unaligned.apk" `
     --java "$BuildDir\gen" `
     "$BuildDir\compiled_res\res.zip"
@@ -63,10 +63,15 @@ $Zip.Dispose()
 & $Zipalign -f -p 4 "$BuildDir\unsigned.apk" "$BuildDir\aligned.apk"
 
 Write-Host "[6/6] Firmando APK (v1 + v2 + v3) con apksigner..."
-$Keystore = Join-Path $BuildDir "debug.keystore"
-& $Keytool -genkeypair -v -keystore $Keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US" | Out-Null
+$Keystore = Join-Path $ProjectRoot "build\debug.keystore"
+if (-not (Test-Path $Keystore)) {
+    & $Keytool -genkeypair -v -keystore $Keystore -storepass android -alias androiddebugkey -keypass android -keyalg RSA -keysize 2048 -validity 10000 -dname "CN=Android Debug,O=Android,C=US" | Out-Null
+}
 
-$FinalApk = Join-Path $DistDir "s23-plus-camera-v1.0.0.apk"
+$FinalApk = Join-Path $DistDir "s23-plus-camera-rescue-v1.0.1.apk"
+if (Test-Path (Join-Path $DistDir "s23-plus-camera-v1.0.0.apk")) {
+    Remove-Item -Force (Join-Path $DistDir "s23-plus-camera-v1.0.0.apk")
+}
 & $Java -jar $ApkSignerJar sign --ks $Keystore --ks-pass pass:android --key-pass pass:android --out $FinalApk "$BuildDir\aligned.apk"
 
 Write-Host "EXITO: APK generado y firmado en $FinalApk"

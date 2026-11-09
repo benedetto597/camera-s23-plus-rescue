@@ -21,17 +21,20 @@ Documentación técnica completa:
 
 ---
 
-## ✨ Características Principales (v1.0.0)
+## ✨ Características Principales (`v1.0.1`)
 
-1. **Visor Frontal Nativo `Camera2` (`ID 1` y `ID 3`) Integrado:**
+1. **Identidad Visual e Interfaz Moderna (`S23+ Camera Rescue`):**
+   - Icono adaptativo vectorial (`@mipmap/ic_launcher`) con diseño de lente óptico e insignia de rescate.
+   - Botones de acción con nombres cortos y directos (**`Tomar Selfie`**, **`Cámara Trasera Pro`**, **`Trasera Rápida (QR)`**, **`Video Trasero Pro`**) acompañados de botones desplegables (**`▾` / `▴`**) que muestran u ocultan la ficha técnica de cada sensor y modo HAL.
+2. **Visor Frontal Nativo `Camera2` (`ID 1` y `ID 3`) Integrado:**
    - Vista previa fluida en tiempo real (`TextureView`).
    - Conmutación instantánea entre **`ID 1` (12 MP Gran Angular, `4000x3000`)** e **`ID 3` (8.6 MP Normal, `3392x2544`)**.
    - Disparo directo y guardado transaccional JPEG en `Pictures/S23Camera` (visible de inmediato en Samsung Gallery y Google Fotos).
-2. **Lanzador Directo Trasero 1x / 3x — Modo Pro ISP (`device 56` y `device 52`):**
+3. **Lanzador Directo Trasero 1x / 3x — Modo Pro ISP (`device 56` y `device 52`):**
    - Abre la cámara de Samsung limpiando cualquier estado colgado (`FLAG_ACTIVITY_NEW_TASK | FLAG_ACTIVITY_CLEAR_TASK`) directamente sobre el sensor `S5KGN3` (1x `W`, `device 56`) y `S5K3K1` (3x `T`, `device 52`) con todo el procesamiento ISP de hardware (Auto ISO, Auto Obturador, Auto-Focus, Flash y disparo nativo en `DCIM/Camera`).
-   - Incluye también acceso directo a **Video Pro Trasero (`device 56` / `52`)**.
-3. **Lanzador Trasero 1x vía Escáner QR + HUD Obturador Flotante (`device 56`):**
-   - Abre el visor `SCAN_QR_CODE` (`device 56`) y superpone una barra flotante minimalista (`RearCaptureService`) con botón **TOMAR FOTO**, selector de recorte (**Visor Óptico Limpio** vs **Completo**) y botón para volver a la cámara frontal.
+   - Incluye también acceso directo a **Video Trasero Pro (`device 56` / `52`)**.
+4. **Lanzador Trasero 1x vía Escáner QR + HUD Obturador Flotante (`device 56`):**
+   - Abre el visor `SCAN_QR_CODE` (`device 56`) y superpone una barra flotante minimalista (`RearCaptureService`) con botón **Capturar**, selector de recorte (**Visor** vs **Completo**) y botón para volver a la cámara frontal.
 
 ---
 
@@ -56,11 +59,11 @@ powershell -ExecutionPolicy Bypass -File .\scripts\test-local.ps1
 ```powershell
 powershell -ExecutionPolicy Bypass -File .\scripts\build-local.ps1
 ```
-El APK firmado se genera en `dist/s23-plus-camera-v1.0.0.apk`.
+El APK firmado se genera en `dist/s23-plus-camera-rescue-v1.0.1.apk`.
 
 ### Instalar en el S23+ vía ADB
 ```powershell
-adb install -r .\dist\s23-plus-camera-v1.0.0.apk
+adb install -r .\dist\s23-plus-camera-rescue-v1.0.1.apk
 ```
 
 ---
@@ -69,7 +72,7 @@ adb install -r .\dist\s23-plus-camera-v1.0.0.apk
 
 El workflow [`.github/workflows/release-apk.yml`](.github/workflows/release-apk.yml) está configurado para ejecutarse **únicamente cuando se envía un tag de versión (`v*`)**:
 ```bash
-git tag v1.0.0
-git push origin v1.0.0
+git tag v1.0.1
+git push origin v1.0.1
 ```
 Esto mantiene el consumo de minutos de CI en `0` durante el desarrollo normal.

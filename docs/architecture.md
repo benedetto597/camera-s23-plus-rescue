@@ -1,4 +1,6 @@
-# Arquitectura de Software — S23+ Camera Rescue (`com.s23plus.camera`)
+# Arquitectura de Software — S23+ Camera Rescue (`com.s23plus.camera` · `v1.0.1`)
+
+**Repositorio:** `https://github.com/benedetto597/camera-s23-plus-rescue`
 
 ## 1. Diagrama de Flujo y Ruteo de Sensores
 

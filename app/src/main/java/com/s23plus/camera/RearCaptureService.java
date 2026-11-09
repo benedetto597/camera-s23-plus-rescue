@@ -133,9 +133,9 @@ public final class RearCaptureService extends AccessibilityService {
         hudContainer.setBackground(bg);
 
         hudStatusText = new TextView(this);
-        hudStatusText.setText("Lente Trasero 1x Activo (ID 56 - S5KGN3)");
+        hudStatusText.setText("S23+ Camera Rescue · Lente 1x (ID 56)");
         hudStatusText.setTextColor(Color.parseColor("#E2E8F0"));
-        hudStatusText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 12);
+        hudStatusText.setTextSize(TypedValue.COMPLEX_UNIT_SP, 11);
         hudStatusText.setGravity(Gravity.CENTER);
         hudContainer.addView(hudStatusText);
 
@@ -149,14 +149,14 @@ public final class RearCaptureService extends AccessibilityService {
         rowParams.topMargin = dpToPx(6);
         buttonRow.setLayoutParams(rowParams);
 
-        Button shutterButton = createStyledButton("TOMAR FOTO", "#0284C7", "#FFFFFF", true);
+        Button shutterButton = createStyledButton("Capturar", "#0284C7", "#FFFFFF", true);
         shutterButton.setOnClickListener(v -> captureRearFrame());
         buttonRow.addView(shutterButton);
 
-        cropModeButton = createStyledButton("Recorte: Visor", "#1E293B", "#38BDF8", false);
+        cropModeButton = createStyledButton("Visor", "#1E293B", "#38BDF8", false);
         cropModeButton.setOnClickListener(v -> {
             cleanCropMode = !cleanCropMode;
-            cropModeButton.setText(cleanCropMode ? "Recorte: Visor" : "Recorte: Completo");
+            cropModeButton.setText(cleanCropMode ? "Visor" : "Completo");
         });
         buttonRow.addView(cropModeButton);
 
@@ -169,7 +169,7 @@ public final class RearCaptureService extends AccessibilityService {
         });
         buttonRow.addView(switchFrontButton);
 
-        Button closeButton = createStyledButton("X", "#334155", "#FCA5A5", false);
+        Button closeButton = createStyledButton("✕", "#334155", "#FCA5A5", false);
         closeButton.setOnClickListener(v -> hideHud());
         buttonRow.addView(closeButton);
 

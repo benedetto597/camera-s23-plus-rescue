@@ -51,8 +51,8 @@ jobs:
             --manifest app/src/main/AndroidManifest.xml \
             --min-sdk-version 30 \
             --target-sdk-version 34 \
-            --version-code 1 \
-            --version-name "1.0.0" \
+            --version-code 2 \
+            --version-name "1.0.1" \
             -o build/apk-ci/unaligned.apk \
             --java build/apk-ci/gen \
             build/apk-ci/compiled_res/res.zip
@@ -74,7 +74,7 @@ jobs:
             -dname "CN=S23PlusCamera,O=S23Rescue,C=US"
 
           VERSION_TAG="${GITHUB_REF_NAME}"
-          FINAL_APK="dist/s23-plus-camera-${VERSION_TAG}.apk"
+          FINAL_APK="dist/s23-plus-camera-rescue-${VERSION_TAG}.apk"
 
           "$BUILD_TOOLS/apksigner" sign \
             --ks build/apk-ci/release.keystore \

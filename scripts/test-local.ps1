@@ -18,5 +18,7 @@ New-Item -ItemType Directory -Force -Path $OutDir | Out-Null
 & $Javac -encoding UTF-8 -d $OutDir `
     (Join-Path $ProjectRoot "app\src\main\java\com\s23plus\camera\CameraConfig.java") `
     (Join-Path $ProjectRoot "app\src\test\java\com\s23plus\camera\CameraConfigTest.java")
+if ($LASTEXITCODE -ne 0) { throw "Fallo compilando CameraConfigTest" }
 
 & $Java -cp $OutDir com.s23plus.camera.CameraConfigTest
+if ($LASTEXITCODE -ne 0) { throw "Fallo ejecutando CameraConfigTest" }

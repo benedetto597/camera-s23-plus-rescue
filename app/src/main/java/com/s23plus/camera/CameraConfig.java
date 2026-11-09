@@ -11,6 +11,39 @@ package com.s23plus.camera;
  */
 public final class CameraConfig {
 
+    /** Identidad y versión oficial de la aplicación. */
+    public static final String APP_TITLE = "S23+ Camera Rescue";
+    public static final String APP_VERSION = "1.0.1";
+
+    /** Nombres cortos para los botones principales de la interfaz moderna (v1.0.1). */
+    public static final String BTN_FRONT_SHUTTER_SHORT = "Tomar Selfie";
+    public static final String BTN_REAR_PRO_SHORT = "Cámara Trasera Pro";
+    public static final String BTN_REAR_QR_SHORT = "Trasera Rápida (QR)";
+    public static final String BTN_REAR_VIDEO_SHORT = "Video Trasero Pro";
+
+    /** Descripciones técnicas desplegables (acordeón ▾/▴) para cada módulo de cámara. */
+    public static final String TECH_DESC_FRONT =
+            "Pipeline Camera2 directo sobre el sensor frontal S5K3LU (sin pasar por la app nativa).\n"
+            + "• ID 1: 12 MP Gran Angular (4000×3000, f/2.2, 3.3 mm).\n"
+            + "• ID 3: 8.6 MP Recorte Normal (3392×2544).\n"
+            + "• Guardado transaccional JPEG 95% en Pictures/S23Camera.";
+
+    public static final String TECH_DESC_REAR_PRO =
+            "Inicia Samsung Camera en ShootingMode 3 (Pro) con FLAG_ACTIVITY_CLEAR_TASK.\n"
+            + "• Abre directamente CameraId.BACK (ID 56, S5KGN3 50MP/12MP 1x) y CameraId.BACK_TELE (ID 52, S5K3K1 10MP 3x).\n"
+            + "• Evita CameraId.BACK_SEAMLESS_ZOOM (ID 20), saltándose el chequeo de EEPROM del sensor Ultra-Wide dañado (ID 58 / sensorId 2).\n"
+            + "• Conserva autoenfoque, flash, controles ISO/Speed en AUTO y disparo ISP en DCIM/Camera.";
+
+    public static final String TECH_DESC_REAR_QR =
+            "Invoca el Intent exportado com.sec.android.app.camera.action.SCAN_QR_CODE (ShootingMode 40).\n"
+            + "• Fuerza la apertura exclusiva del pipeline independiente ID 56 (S5KGN3 1x, numPhysicalCameras: 1).\n"
+            + "• Superpone el HUD flotante de RearCaptureService para capturar el visor óptico limpio y guardarlo en Pictures/S23Camera.";
+
+    public static final String TECH_DESC_REAR_VIDEO =
+            "Inicia Samsung Camera en ShootingMode 36 (Pro video) con FLAG_ACTIVITY_CLEAR_TASK.\n"
+            + "• Habilita grabación de video con estabilización y audio sobre los sensores independientes ID 56 (1x W) e ID 52 (3x T).\n"
+            + "• Evita por completo el grupo lógico multi-cámara ID 20 y el sensor Ultra-Wide averiado.";
+
     /** ID público Camera2 para la cámara frontal Gran Angular (12 MP, 4000x3000). */
     public static final String FRONT_CAMERA_WIDE_ID = "1";
 

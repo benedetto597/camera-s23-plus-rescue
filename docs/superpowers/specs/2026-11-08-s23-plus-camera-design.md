@@ -1,8 +1,9 @@
 # Especificación de Diseño: S23+ Camera Rescue (`com.s23plus.camera`)
 
 **Fecha:** 8 de noviembre de 2026  
+**Repositorio:** `camera-s23-plus-rescue`  
 **Dispositivo Objetivo:** Samsung Galaxy S23+ (`SM-S916U1` — Android 16 / One UI 8)  
-**Estado:** Aprobado para Implementación (v1.0 MVP + Arquitectura Extensible v1.1+)
+**Estado:** Aprobado e Implementado (`v1.0.1` — UI Moderna + Icono Adaptativo + Tarjetas Técnicas Desplegables)
 
 ---
 
@@ -30,18 +31,26 @@ El diagnóstico en dispositivo demostró que:
 - **Soporte Nativo `Camera2` para Cámaras Frontales (`ID 1` y `ID 3`):**
   - Visor `TextureView` en vivo integrado en `MainActivity` para tomar selfies con los sensores `ID 1` (`4000x3000`, 12 MP) e `ID 3` (`3392x2544`, 8.6 MP) y conmutar rápidamente entre cámara trasera (`device 56`) y frontal (`ID 1` / `ID 3`).
 
-### Versiones Futuras Planificadas (v1.1+)
-- Controles avanzados de exposición manual en cámara frontal, temporizador de disparo, cuadrícula de composición y accesos directos de widgets/Quick Settings Tile.
+### Versión 1.0.1 (Presentación Moderna, Icono Adaptativo y UX de Tarjetas Desplegables)
+- **Identidad Visual «S23+ Camera Rescue»:**
+  - Nombre visible en el lanzador del sistema: **`S23+ Camera Rescue`**.
+  - Icono adaptativo vectorial (`@mipmap/ic_launcher` y `@mipmap/ic_launcher_round`) con diseño de lente óptico en cian/esmeralda sobre fondo obsidiana e insignia de rescate.
+- **Interfaz Moderna con Botones Cortos y Desplegables Técnicos (`▾` / `▴`):**
+  - Controles de cámara frontal concisos: **`📸 Tomar Selfie`**, **`🔄 Lente 12 MP / 8.6 MP`** y botón **`▾`** para desplegar la ficha técnica del sensor `S5K3LU`.
+  - Tarjetas de rescate trasero con nombres cortos y claros (**`📷 Cámara Trasera Pro`**, **`🎯 Trasera Rápida (Visor QR)`**, **`🎥 Video Trasero Pro`**), acompañadas de un botón **`▾`** que despliega/oculta bajo demanda la explicación técnica del bypass HAL (`ID 56` / `ID 52` vs `ID 58`).
+
+### Versiones Futuras Planificadas (v1.2+)
+- Controles avanzados de exposición manual en cámara frontal, temporizador de disparo, cuadrícula de composición y accesos directos en Quick Settings Tile.
 
 ---
 
 ## 3. Arquitectura de Componentes
 
 ```
-com.s23plus.camera
-├── CameraConfig.java              # Constantes verificadas de hardware (IDs 1, 3, 52, 56), Intents y cálculo puro de recorte del visor
-├── MainActivity.java              # Pantalla principal: visor Camera2 frontal (ID 1/3) + lanzadores Traseros (QR + HUD y Modo Pro ISP)
-├── RearCaptureService.java        # AccessibilityService + Overlay HUD flotante (Obturador, Modo Encuadre, Giro a Frontal, Cerrar)
+com.s23plus.camera (repo: camera-s23-plus-rescue)
+├── CameraConfig.java              # Constantes verificadas de hardware (IDs 1, 3, 52, 56), textos técnicos y cálculo puro de recorte
+├── MainActivity.java              # UI moderna v1.0.1 con visor Camera2 frontal y tarjetas de rescate con acordeón técnico (▾/▴)
+├── RearCaptureService.java        # AccessibilityService + Overlay HUD flotante compacto (Capturar, Visor/Completo, Frontal, ✕)
 ├── FrontCameraController.java     # Controlador Camera2 limpio y seguro para sensores públicos funcionales (ID 1 e ID 3)
 └── MediaStoreSaver.java           # Guardado atómico de fotografías JPEG en MediaStore (Pictures/S23Camera)
 ```

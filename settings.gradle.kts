@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "camera-s23-plus"
+rootProject.name = "camera-s23-plus-rescue"
 include(":app")
